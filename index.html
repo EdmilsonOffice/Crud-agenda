@@ -5,6 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    
+   <script>
+// Array para armazenar contatos
+const contatos = [];
+
+// Função para adicionar contato
+function adicionarContato() {
+  // Obter dados do contato
+
+  const nome = prompt("Digite o nome:");
+  const numero = prompt("Digite o número:");
+  const email = prompt("Digite o email:");
+
+  // Validar dados
+  if (!nome || !numero || !email) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  // Criar objeto contato
+  const contato = {
+    nome,
+    numero,
+    email,
+    dataCriacao: new Date().toLocaleString(),
+  };
+
+  // Adicionar contato ao array
+  contatos.push(contato);
+
+  // Exibir mensagem de sucesso
+  alert("Contato adicionado com sucesso!");
+}
+
+// Função para visualizar contatos
+function visualizarContatos() {
+  // Verificar se há contatos
+  if (!contatos.length) {
+    alert("Nenhum contato cadastrado!");
+    return;
+  }
+
+  // Exibir lista de contatos
+  for (const contato of contatos) {
+    console.log(`Nome: ${contato.nome}`);
+    console.log(`Número: ${contato.numero}`);
+    console.log(`Email: ${contato.email}`);
+    console.log(`Data de criação: ${contato.dataCriacao}`);
+    console.log("---------------------");
+  }
+}
+
+// Função para editar contato
+function editarContato() {
+  // Obter nome do contato a ser editado
+  const nome = prompt("Digite o nome do contato a ser editado:");
+
+  // Encontrar contato no array
+  const contato = contatos.find((contato) => contato.nome === nome);
+
+  // Verificar se contato existe
+  if (!contato) {
+    alert("Contato não encontrado!");
+    return;
+  }
+
+  // Obter novos dados do contato
+  const novoNome = prompt("Digite o novo nome:", contato.nome);
+  const novoNumero = prompt("Digite o novo número:", contato.numero);
+  const novoEmail = prompt("Digite o novo email:", contato.email);
+
+  // Validar dados
+  if (!novoNome || !novoNumero || !novoEmail) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  // Atualizar dados do contato
+  contato.nome = novoNome;
+  contato.numero = novoNumero;
+  contato.email = novoEmail;
+
+  // Exibir mensagem de sucesso
+  alert("Contato editado com sucesso!");
+}
+
+// Função para excluir contato
+function excluirContato() {
+  // Obter nome do contato a ser excluído
+  const nome = prompt("Digite o nome do contato a ser excluído:");
+
+  // Encontrar contato no array
+  const contato = contatos.find((contato) => contato.nome === nome);
+
+  // Verificar se contato existe
+  if (!contato) {
+    alert("Contato não encontrado!");
+    return;
+  }
+
+  // Confirmar exclusão
+  const confirmacao = confirm(`Deseja realmente excluir o contato ${contato.nome}?`);
+
+  if (confirmacao) {
+    // Excluir contato do array
+    const indiceContato = contatos.indexOf(contato);
+    contatos.splice(indiceContato, 1);
+
+    // Exibir mensagem de sucesso
+    alert("Contato excluído com sucesso!");
+  }
+}
+
+// Menu principal
+while (true) {
+  // Exibir opções
+  console.log("** Agenda de Contatos **");
+  console.log("1 - Adicionar contato");
+  console.log("2 - Visualizar contatos");
+  console.log("3 - Editar contato");
+  console.log("4 - Excluir contato");
+  console.log("0 - Sair");
+
+  // Obter opção do usuário
+  const opcao = prompt("Digite a opção desejada:");
+
+  // Chamar função de acordo com a opção
+  switch (opcao) {
+    case "1":
+      adicionarContato();
+      break;
+    case "2":
+      visualizarContatos();
+      break;
+    case "3":
+      
+</script>
 </body>
 </html>
